@@ -52,7 +52,7 @@
     
     (map-set installers installer true)
     (map-set installer-metadata installer {
-      added-at: block-height,
+      added-at: stacks-block-height,
       added-by: tx-sender,
       active: true
     })

@@ -94,7 +94,7 @@
         service-type: service-type,
         amount: amount,
         status: STATUS-PENDING,
-        created-at: block-height,
+        created-at: stacks-block-height,
         assigned-at: none,
         completed-at: none,
         description: description
@@ -136,7 +136,7 @@
       (map-set orders order-id (merge order-data {
         installer: (some installer),
         status: STATUS-ASSIGNED,
-        assigned-at: (some block-height)
+        assigned-at: (some stacks-block-height)
       }))
       
       ;; Update installer orders list
@@ -199,7 +199,7 @@
       ;; Update order
       (map-set orders order-id (merge order-data {
         status: STATUS-COMPLETED,
-        completed-at: (some block-height)
+        completed-at: (some stacks-block-height)
       }))
       
       (var-set total-completed (+ (var-get total-completed) u1))

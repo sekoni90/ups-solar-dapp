@@ -89,8 +89,19 @@ describe("UPS Solar App Integration Tests", () => {
         [Cl.uint(1)],
         deployer
       );
-      const order = orderStatus.result.value as any;
-      expect(order.data.status).toBeUint(3); // STATUS-COMPLETED
+      expect(orderStatus.result).toBeSome(
+        Cl.tuple({
+          customer: Cl.principal(customer),
+          installer: Cl.some(Cl.principal(installer)),
+          "service-type": Cl.uint(1),
+          amount: Cl.uint(5000000),
+          status: Cl.uint(3), // STATUS-COMPLETED
+          "created-at": Cl.uint(5),
+          "assigned-at": Cl.some(Cl.uint(7)),
+          "completed-at": Cl.some(Cl.uint(9)),
+          description: Cl.stringAscii("Complete UPS installation")
+        })
+      );
 
       const escrowStatus = simnet.callReadOnlyFn(
         "escrow",
@@ -98,11 +109,18 @@ describe("UPS Solar App Integration Tests", () => {
         [Cl.uint(1)],
         deployer
       );
-      const escrow = escrowStatus.result.value as any;
-      expect(escrow.data.released).toBeBool(true);
+      expect(escrowStatus.result).toBeSome(
+        Cl.tuple({
+          payer: Cl.principal(customer),
+          recipient: Cl.principal(installer),
+          amount: Cl.uint(5000000),
+          released: Cl.bool(true),
+          "created-at": Cl.uint(6),
+          "released-at": Cl.some(Cl.uint(10))
+        })
+      );
     });
   });
-
   describe("Main Contract Functions", () => {
     it("should get contract version", () => {
       const { result } = simnet.callReadOnlyFn(

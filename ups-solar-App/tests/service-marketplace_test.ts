@@ -129,8 +129,14 @@ describe("Service Marketplace Contract Tests", () => {
         deployer
       );
       
-      const order = result.value as any;
-      expect(order.data.status).toBeUint(1); // STATUS-ASSIGNED
+      // Extract the Some value and check the status field
+      expect(result).toBeSome(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            status: Cl.uint(1) // STATUS-ASSIGNED
+          })
+        })
+      );
     });
 
     it("should track installer orders", () => {

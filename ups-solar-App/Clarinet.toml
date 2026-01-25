@@ -6,11 +6,6 @@ telemetry = true
 cache_dir = '.\.cache'
 requirements = []
 
-[contracts.ups-solar-App]
-path = 'contracts/ups-solar-App.clar'
-clarity_version = 3
-epoch = 'latest'
-
 [contracts.roles]
 path = 'contracts/roles.clar'
 clarity_version = 3
@@ -23,6 +18,11 @@ epoch = 'latest'
 
 [contracts.service-marketplace]
 path = 'contracts/service-marketplace.clar'
+clarity_version = 3
+epoch = 'latest'
+
+[contracts.ups-solar-App]
+path = 'contracts/ups-solar-App.clar'
 clarity_version = 3
 epoch = 'latest'
 

@@ -66,7 +66,7 @@
       recipient: recipient,
       amount: amount,
       released: false,
-      created-at: block-height,
+      created-at: stacks-block-height,
       released-at: none
     })
     
@@ -102,7 +102,7 @@
       ;; Update escrow status
       (map-set escrows order-id (merge escrow-data { 
         released: true,
-        released-at: (some block-height)
+        released-at: (some stacks-block-height)
       }))
       
       (var-set total-released (+ (var-get total-released) (get amount escrow-data)))
@@ -141,7 +141,7 @@
       ;; Mark as released to prevent double-spending
       (map-set escrows order-id (merge escrow-data { 
         released: true,
-        released-at: (some block-height)
+        released-at: (some stacks-block-height)
       }))
       
       (ok true)
