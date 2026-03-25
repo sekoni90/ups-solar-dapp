@@ -1,0 +1,39 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: roles
+            expected-sender: ST12WP6YP1RDTD5HBFYZTA3SH4KHP6R374F8W5AJQ
+            cost: 30810
+            path: "contracts\\roles.clar"
+            anchor-block-only: true
+            clarity-version: 3
+        - contract-publish:
+            contract-name: escrow
+            expected-sender: ST12WP6YP1RDTD5HBFYZTA3SH4KHP6R374F8W5AJQ
+            cost: 52340
+            path: "contracts\\escrow.clar"
+            anchor-block-only: true
+            clarity-version: 3
+        - contract-publish:
+            contract-name: service-marketplace
+            expected-sender: ST12WP6YP1RDTD5HBFYZTA3SH4KHP6R374F8W5AJQ
+            cost: 82220
+            path: "contracts\\service-marketplace.clar"
+            anchor-block-only: true
+            clarity-version: 3
+        - contract-publish:
+            contract-name: ups-solar-App
+            expected-sender: ST12WP6YP1RDTD5HBFYZTA3SH4KHP6R374F8W5AJQ
+            cost: 42910
+            path: "contracts\\ups-solar-App.clar"
+            anchor-block-only: true
+            clarity-version: 3
+      epoch: "3.2"
